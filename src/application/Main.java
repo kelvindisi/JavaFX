@@ -3,12 +3,11 @@ package application;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.event.*;
 
-public class Main extends Application implements EventHandler{
+public class Main extends Application implements EventHandler<ActionEvent>{
 	private Button btn;
 	
 	public static void main(String[] args) {
@@ -28,7 +27,7 @@ public class Main extends Application implements EventHandler{
 	}
 
 	@Override
-	public void handle(Event event) {
+	public void handle(ActionEvent event) {
 		if (event.getSource() == btn) {
 			System.out.println("Clicked Me");
 		}
