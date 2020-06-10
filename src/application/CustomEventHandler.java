@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.event.*;
 
-public class Main extends Application implements EventHandler<ActionEvent>{
+public class CustomEventHandler extends Application implements EventHandler<ActionEvent>{
 	private Button btn;
 	
 	public static void main(String[] args) {
