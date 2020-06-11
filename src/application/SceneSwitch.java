@@ -21,13 +21,15 @@ public class SceneSwitch extends Application{
 		
 		Button btn = new Button("Go to scene two");
 		Button btn2 = new Button("Go to scene one");
+		Label label = new Label("Welcome to the most designed scene");
+		Label label2 = new Label("Welcome to second Scene");
 		
 		btn.setOnAction(e -> window.setScene(scene2));
 		btn2.setOnAction(e -> window.setScene(scene));
 		
 		
-		layout.getChildren().add(btn);
-		layout2.getChildren().add(btn2);
+		layout.getChildren().addAll(label, btn);
+		layout2.getChildren().addAll(label2, btn2);
 		
 		scene = new Scene(layout, 400, 400);
 		scene2 = new Scene(layout2, 400, 400);
