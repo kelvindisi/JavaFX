@@ -22,8 +22,8 @@ public class ConfirmBox {
 		Label label = new Label();
 		label.setText(description);
 		
-		Button btnYes = new Button("Yes send!");
-		Button btnNo = new Button("Don't you dare send!");
+		Button btnYes = new Button("Yes Continue!");
+		Button btnNo = new Button("Don't do that!");
 		btnYes.setOnAction(e ->  {
 			result = true;
 			closeMe();
