@@ -53,6 +53,18 @@ public class FormControls extends Application {
 		
 		grid.getChildren().addAll(choiceLabel, choice);
 		
+		// ComboBox row - 2
+		Label comboLabel = new Label("ComboBox");
+		GridPane.setConstraints(comboLabel, 0, 2);
+		ComboBox<String> comboBox = new ComboBox<>();
+		comboBox.getItems().addAll("Farmer", "Student", "Teacher", "Lecture", "Engineer", "Police");
+		comboBox.setEditable(true);
+		comboBox.setVisibleRowCount(4);
+		comboBox.setOnAction(e -> {
+			AlertBox.display("ComboBox Value", comboBox.getValue());
+		});
+		GridPane.setConstraints(comboBox, 1, 2);
+		grid.getChildren().addAll(comboLabel, comboBox);
 		
 		Scene scene = new Scene(grid, 500, 600);
 		
