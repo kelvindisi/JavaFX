@@ -13,6 +13,7 @@ public class FormControls extends Application {
 	Stage window;
 	
 	ListView<String> listView;
+	TreeView<String> treeView;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -82,11 +83,40 @@ public class FormControls extends Application {
 		GridPane.setConstraints(listView, 0, 3);
 		grid.getChildren().addAll(listView, btnShop);
 	
+		// TreeView row - 4
+		Label treeLabel = new Label("TreeView");
+		treeView = new TreeView<>();
+		treeView.setMaxHeight(180);
+		GridPane.setConstraints(treeLabel, 0, 4);
+		GridPane.setConstraints(treeView, 1, 4);
+		
+		TreeItem<String> root, download, music, documents;
+		root = new TreeItem<>();
+		root.setExpanded(true);
+		download = makeBranch("Download", root);
+		makeBranch("Videos", download);
+		makeBranch("Programs", download);
+		music = makeBranch("Music", root);
+		makeBranch("mp3", music);
+		makeBranch("mp4", music);
+		documents = makeBranch("Documents", root);
+		makeBranch("school", documents);
+		treeView.setRoot(root);
+		treeView.setShowRoot(false);		
+		
+		grid.getChildren().addAll(treeLabel, treeView);
 		
 		Scene scene = new Scene(grid, 500, 600);
 		
 		window.setScene(scene);
 		window.show();
+	}
+	
+	// TreeView Branch creation
+	public TreeItem<String> makeBranch(String branchName, TreeItem<String> parentBranch) {
+		TreeItem<String> item = new TreeItem<>(branchName);
+		parentBranch.getChildren().add(item);
+		return item;
 	}
 	
 	// checkBox submit handling
