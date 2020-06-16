@@ -24,7 +24,7 @@ public class FormControls extends Application {
 		grid.setHgap(10);
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		
-		// CheckBox
+		// CheckBox row - 0
 		CheckBox checkBox = new CheckBox("Subscribe Magazine");
 		CheckBox checkBox2 = new CheckBox("Auto Save");
 		checkBox2.setSelected(true);
@@ -38,6 +38,21 @@ public class FormControls extends Application {
 		
 		grid.getChildren().addAll(checkBox, checkBox2, submitCheckBox);
 		
+		// ChoiceBox List row - 1
+		Label choiceLabel = new Label("ChoiceBox");
+		ChoiceBox<String> choice = new ChoiceBox<>();
+		choice.getItems().addAll("Extra Small", "Small", "Medium", "Large", "Extra Large", "XXL");
+		choice.setValue("Extra Small");
+		GridPane.setConstraints(choiceLabel, 0, 1);
+		GridPane.setConstraints(choice, 1, 1);
+		
+		choice.getSelectionModel().selectedItemProperty()
+			.addListener((p, oldVal, newVal)-> {
+				AlertBox.display("Choce Selection", String.format("Old: %s New: %s", oldVal, newVal));
+			});
+		
+		grid.getChildren().addAll(choiceLabel, choice);
+		
 		
 		Scene scene = new Scene(grid, 500, 600);
 		
@@ -48,16 +63,16 @@ public class FormControls extends Application {
 	// checkBox submit handling
 	public void handleCheckBox(CheckBox box1, CheckBox box2) {
 		String statem = "";
-		if (box1.isSelected() && box2.isSelected())
-			statem = "Subscribed Magazine and Enabled Auto Save";
-		else if (box1.isSelected())
-			statem = "Subscribed Magazine";
-		else if (box2.isSelected())
-			statem = "Enabled auto-save";
-		else
+		
+		if (box1.isSelected())
+			statem += " Subscribed Magazine";
+		if (box2.isSelected())
+			statem += " Enabled auto-save";
+		if (!box1.isSelected() && !box2.isSelected())
 			statem = "You have not selected any item";
 		
-		AlertBox.display("CheckBox Selection", statem);
+		AlertBox.display("CheckBox Selection", statem.trim());
 	}
+	
 
 }
