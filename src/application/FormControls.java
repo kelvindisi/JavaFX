@@ -1,6 +1,7 @@
 package application;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
@@ -10,6 +11,8 @@ import javafx.geometry.Insets;
 
 public class FormControls extends Application {
 	Stage window;
+	
+	ListView<String> listView;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -66,6 +69,20 @@ public class FormControls extends Application {
 		GridPane.setConstraints(comboBox, 1, 2);
 		grid.getChildren().addAll(comboLabel, comboBox);
 		
+		// ListView row - 3
+		String[] shop = new String[] {"Colgate", "Close-Up", "Sensodine", "White..x", "Sugar", "Bread", "Soda"};
+		listView = new ListView<>();
+		listView.setMaxHeight(180);
+		listView.getItems().addAll(shop);
+		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		Button btnShop = new Button("Purchase");
+		GridPane.setConstraints(btnShop, 1, 3);
+		btnShop.setOnAction(e -> displayShoppingList());
+		
+		GridPane.setConstraints(listView, 0, 3);
+		grid.getChildren().addAll(listView, btnShop);
+	
+		
 		Scene scene = new Scene(grid, 500, 600);
 		
 		window.setScene(scene);
@@ -86,5 +103,16 @@ public class FormControls extends Application {
 		AlertBox.display("CheckBox Selection", statem.trim());
 	}
 	
+	// List View handling
+	public void displayShoppingList() {
+		String msg = "";
+		
+		ObservableList<String> shopList = listView.getSelectionModel().getSelectedItems();
+		for (String item: shopList) {
+			msg += item + " ";
+		}
+		
+		AlertBox.display("List View Items Selected", msg.trim());
+	}
 
 }
