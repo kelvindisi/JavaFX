@@ -7,10 +7,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.collections.*;
+import javafx.geometry.Insets;
 
 public class TableDesign extends Application {
 	Stage window;
 	TableView<Person> table;
+	
+	TextField txtFirstName;
+	TextField txtLastName;
+	TextField txtSalary;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -19,6 +24,27 @@ public class TableDesign extends Application {
 		window = primaryStage;
 		window.setTitle("Table Design");
 		BorderPane layout = new BorderPane();
+		
+		// Input Table
+		txtFirstName = new TextField();
+		txtFirstName.setPromptText("First name");
+		
+		txtLastName = new TextField();
+		txtLastName.setPromptText("Last Name");
+		
+		txtSalary = new TextField();
+		txtSalary.setPromptText("Salary");
+		
+		Button btnAdd = new Button("Add");
+		Button btnDelete = new Button("Delete");
+		
+		// Handle Add event
+		btnAdd.setOnAction(e -> addNewItem());
+		
+		HBox formLayout = new HBox(5);
+		formLayout.setPadding(new Insets(10, 10, 10, 10));
+		formLayout.getChildren().addAll(txtFirstName, txtLastName, txtSalary, btnAdd, btnDelete);
+		
 		
 		// First Name Column
 		TableColumn<Person, String> firstNameCol = new TableColumn<>("First Name");
@@ -41,12 +67,27 @@ public class TableDesign extends Application {
 		table.getColumns().addAll(firstNameCol, lastNameCol, salaryCol);
 		
 		layout.setCenter(table);
+		layout.setBottom(formLayout);
 		Scene scene = new Scene(layout);
 		
 		window.setScene(scene);
 		window.show();
 	}
 	
+	private void addNewItem() {
+		Person newPerson = new Person();
+		newPerson.setFirstName(txtFirstName.getText());
+		newPerson.setLastName(txtLastName.getText());
+		newPerson.setSalary(Double.parseDouble(txtSalary.getText()));
+		
+		table.getItems().add(newPerson);
+		clearForm();
+	}
+	private void clearForm() {
+		txtFirstName.clear();
+		txtLastName.clear();
+		txtSalary.clear();
+	}
 	private ObservableList<Person> getPeople() {
 		ObservableList<Person> people = FXCollections.observableArrayList();
 		

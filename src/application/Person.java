@@ -5,8 +5,12 @@ public class Person {
 	private String lastName;
 	private double salary;
 	
+	public Person() {
+		this.firstName = "";
+		this.lastName = "";
+		this.salary = 0;
+	}
 	public Person(String firstName, String lastName, double salary) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.salary = salary;
