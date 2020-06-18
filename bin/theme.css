@@ -1,0 +1,19 @@
+.root {
+	-fx-background-color: #383838;
+	-fx-font-size: 12px;
+}
+.label {
+	-fx-text-fill: #f8f8f8;
+	-fx-font-weight: bolder;
+}
+.button {
+	-fx-background-color: darkorange;
+	-fx-text-fill: #f8f8f8;
+	-fx-font-weight: bold;
+}
+.button-blue {
+	-fx-background-color: darkblue;
+	-fx-text-fill: #ffffff;
+	-fx-font-weight: bolder;
+	-fx-padding: 10px;
+}

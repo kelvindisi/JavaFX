@@ -28,6 +28,8 @@ public class GridPaneLayout extends Application {
 		// user_name
 		Label usernameLabel = new Label("Username:");
 		GridPane.setConstraints(usernameLabel, 0, 0);
+//			INLINE STYLING
+//		 usernameLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bolder;");
 		TextField txtUsername = new TextField();
 		txtUsername.setPromptText("johndoe");
 		GridPane.setConstraints(txtUsername, 1, 0);
@@ -46,9 +48,24 @@ public class GridPaneLayout extends Application {
 		GridPane.setConstraints(btnLogin, 1, 2);
 		grid.getChildren().addAll(btnLogin);
 		
+		Button btnReset = new Button("Reset");
+		btnReset.getStyleClass().add("button-blue");
+		GridPane.setConstraints(btnReset, 2, 2);
+		grid.getChildren().add(btnReset);
+		
+		
+		btnLogin.setOnAction(e -> {
+			setUserAgentStylesheet(STYLESHEET_CASPIAN);
+		});
+		
+		btnReset.setOnAction(e -> {
+			setUserAgentStylesheet(STYLESHEET_MODENA);
+		});
+		
 		grid.setAlignment(Pos.CENTER);
 		
 		Scene scene = new Scene(grid, 400, 300);
+		scene.getStylesheets().add("theme.css");
 		window.setResizable(false);
 		window.setScene(scene);
 		
