@@ -34,6 +34,35 @@ public class MenuDesign extends Application {
 		fileMenu.getItems().addAll(newFile, open_file, separator, save, save_as);
 		menu.getMenus().addAll(fileMenu);
 		
+		// CheckMenuItem
+		Menu settings = new Menu("Settings");
+		CheckMenuItem autoSave = new CheckMenuItem("Auto Save");
+		settings.getItems().add(autoSave);
+		autoSave.setOnAction(e -> {
+			if (autoSave.isSelected())
+				System.out.println("Auto save enabled");
+			else
+				System.out.println("Disabled auto save");
+		});
+		
+		menu.getMenus().add(settings);
+		
+		// RadioMenuItem
+		Menu difficulty = new Menu("Difficulty");
+		ToggleGroup levelGroup = new ToggleGroup();
+		RadioMenuItem easy = new RadioMenuItem("Easy");
+		RadioMenuItem medium = new RadioMenuItem("Medium");
+		RadioMenuItem hard = new RadioMenuItem("Hard");
+		
+		easy.setToggleGroup(levelGroup);
+		medium.setToggleGroup(levelGroup);
+		hard.setToggleGroup(levelGroup);
+		medium.setSelected(true);
+		
+		difficulty.getItems().addAll(easy, medium, hard);
+		
+		menu.getMenus().add(difficulty);
+		
 		topLayout.getChildren().addAll(menu);
 		
 		layout.setTop(topLayout);
