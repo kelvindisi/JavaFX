@@ -40,6 +40,7 @@ public class TableDesign extends Application {
 		
 		// Handle Add event
 		btnAdd.setOnAction(e -> addNewItem());
+		btnDelete.setOnAction(e -> deleteItems());
 		
 		HBox formLayout = new HBox(5);
 		formLayout.setPadding(new Insets(10, 10, 10, 10));
@@ -63,6 +64,7 @@ public class TableDesign extends Application {
 		
 		// Add Columns
 		table = new TableView<>();
+		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		table.setItems(getPeople());
 		table.getColumns().addAll(firstNameCol, lastNameCol, salaryCol);
 		
@@ -74,6 +76,7 @@ public class TableDesign extends Application {
 		window.show();
 	}
 	
+	// Add new Item
 	private void addNewItem() {
 		Person newPerson = new Person();
 		newPerson.setFirstName(txtFirstName.getText());
@@ -83,6 +86,17 @@ public class TableDesign extends Application {
 		table.getItems().add(newPerson);
 		clearForm();
 	}
+	
+	// Delete Selected items
+	private void deleteItems() {
+		ObservableList<Person> selectedItems, allItems;
+		
+		allItems = table.getItems();
+		selectedItems = table.getSelectionModel().getSelectedItems();
+		
+		selectedItems.forEach(allItems::remove);
+	}
+	
 	private void clearForm() {
 		txtFirstName.clear();
 		txtLastName.clear();
