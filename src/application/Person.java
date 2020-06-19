@@ -1,38 +1,54 @@
 package application;
 
+import javafx.beans.property.*;
+
 public class Person {
-	private String firstName;
-	private String lastName;
-	private double salary;
+	private StringProperty firstName = new SimpleStringProperty();
+	private StringProperty lastName = new SimpleStringProperty();
+	private DoubleProperty salary = new SimpleDoubleProperty();
 	
 	public Person() {
-		this.firstName = "";
-		this.lastName = "";
-		this.salary = 0;
+		this.firstName.set("");
+		this.lastName.set("");
+		this.salary.set(0);
 	}
 	public Person(String firstName, String lastName, double salary) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.salary = salary;
+		this.firstName.set(firstName);
+		this.lastName.set(lastName);
+		this.salary.set(salary);
 	}
 	
-	public String getFirstName() {
+	public StringProperty firstNameProperty()
+	{
 		return firstName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public String getFirstName() {
+		return firstName.get();
 	}
-	public String getLastName() {
+	public void setFirstName(String firstName) {
+		this.firstName.set(firstName);
+	}
+	
+	public StringProperty lastNameProperty()
+	{
 		return lastName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public String getLastName() {
+		return lastName.get();
 	}
-	public double getSalary() {
+	public void setLastName(String lastName) {
+		this.lastName.set(lastName);
+	}
+	
+	public DoubleProperty salaryProperty()
+	{
 		return salary;
 	}
+	public double getSalary() {
+		return salary.get();
+	}
 	public void setSalary(double salary) {
-		this.salary = salary;
+		this.salary.set(0);
 	}
 	
 }

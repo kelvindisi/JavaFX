@@ -50,6 +50,7 @@ public class TableDesign extends Application {
 		// First Name Column
 		TableColumn<Person, String> firstNameCol = new TableColumn<>("First Name");
 		firstNameCol.setMinWidth(250);
+		firstNameCol.setEditable(true);
 		firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 		
 		// Last Name Column
