@@ -8,5 +8,7 @@
 	prefHeight="400" prefWidth="500" 
 	fx:controller="application.FXMLBegginerController">
 	<Button fx:id="button" onAction="#handleButtonClick" text="Click Me" />
+	<Label text="${txtInput.text}" />
+	<TextField fx:id="txtInput" prefHeight="40"/>
 </VBox>
 
