@@ -9,6 +9,14 @@
 	fx:controller="application.FXMLBegginerController">
 	<Button fx:id="button" onAction="#handleButtonClick" text="Click Me" />
 	<Label text="${txtInput.text}" />
-	<TextField fx:id="txtInput" prefHeight="40"/>
+	<TextField fx:id="txtInput" />
+	
+	<fx:define>
+		<ToggleGroup fx:id="gender" />
+	</fx:define>
+	
+	<Label text="Gender" />
+	<RadioButton toggleGroup="$gender" text="Male" />
+	<RadioButton toggleGroup="$gender" selected="true" text="Female" />
 </VBox>
 
